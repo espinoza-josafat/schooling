@@ -1,2 +1,0 @@
-# schooling
-Created with CodeSandbox
