@@ -51,7 +51,7 @@ class SignUpForm extends React.Component {
   render() {
     const { username, email, passwordOne, passwordTwo, error } = this.state;
     const isValid =
-      passwordOne != passwordTwo ||
+      passwordOne !== passwordTwo ||
       passwordOne === "" ||
       passwordTwo === "" ||
       email === "" ||

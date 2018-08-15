@@ -17,7 +17,7 @@ export const doSignOut = () => {
 
 //Password Reset
 export const doPasswordReset = email => {
-  auth.sendPasswordResetEmail();
+  auth.sendPasswordResetEmail(email);
 };
 
 //Password Change
