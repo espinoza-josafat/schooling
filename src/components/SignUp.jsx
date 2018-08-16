@@ -5,6 +5,7 @@ import { Link, withRouter } from "react-router-dom";
 import * as routes from "../constants/routes";
 
 import auth from "../firebase/index";
+import * as users from "../bussiness/users";
 
 const SignUpPage = ({ history }) => (
   <div>
@@ -38,8 +39,15 @@ class SignUpForm extends React.Component {
     auth.auth
       .doCreateUserWithEmailAndPassword(email, passwordOne)
       .then(authUser => {
+        //users
+        // .doCreateUser(authUser.user.uid, username, email)
+        // .then(() => {
         this.setState({ ...INITIAL_STATE });
         history.push(routes.HOME);
+        // })
+        // .catch(error => {
+        //    this.setState(byPropKey("error", error));
+        // });
       })
       .catch(error => {
         this.setState(byPropKey("error", error));
@@ -79,7 +87,7 @@ class SignUpForm extends React.Component {
           onChange={event =>
             this.setState(byPropKey("passwordOne", event.target.value))
           }
-          type="text"
+          type="password"
           placeholder="Password"
         />
         <input
@@ -87,7 +95,7 @@ class SignUpForm extends React.Component {
           onChange={event =>
             this.setState(byPropKey("passwordTwo", event.target.value))
           }
-          type="text"
+          type="password"
           placeholder="Confirm Password"
         />
 
@@ -106,8 +114,6 @@ const SignUpLink = () => (
     Don't have an account? <Link to={routes.SIGN_UP}>Sign Up</Link>
   </p>
 );
-
-//export default SignUpPage;
 
 export default withRouter(SignUpPage);
 

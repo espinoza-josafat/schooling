@@ -1,24 +1,14 @@
 import React from "react";
 
-import { Link } from "react-router-dom";
-
 import auth from "../firebase/index";
-
-import * as routes from "../constants/routes";
-
-const PasswordForgetPage = () => (
-  <div>
-    <h1>PasswordForget</h1>
-    <PasswordForgetForm />
-  </div>
-);
 
 const byPropKey = (propertyName, value) => () => ({
   [propertyName]: value
 });
 
 const INITIAL_STATE = {
-  email: "",
+  passwordOne: "",
+  passwordTwo: "",
   error: null
 };
 
@@ -30,10 +20,10 @@ class PasswordForgetForm extends React.Component {
   }
 
   onSubmit = event => {
-    const { email } = this.state;
+    const { passwordOne } = this.state;
 
     auth.auth
-      .doPasswordReset(email)
+      .doPasswordUpdate(passwordOne)
       .then(() => {
         this.setState({ ...INITIAL_STATE });
       })
@@ -45,19 +35,27 @@ class PasswordForgetForm extends React.Component {
   };
 
   render() {
-    const { email, error } = this.state;
+    const { passwordOne, passwordTwo, error } = this.state;
 
-    const isInvalid = email === "";
+    const isInvalid = passwordOne !== passwordTwo || passwordOne === "";
 
     return (
       <form onSubmit={this.onSubmit}>
         <input
-          value={email}
+          value={passwordOne}
           onChange={event =>
-            this.setState(byPropKey("email", event.target.value))
+            this.setState(byPropKey("passwordOne", event.target.value))
           }
-          type="text"
-          placeholder="Email Address"
+          type="password"
+          placeholder="New Password"
+        />
+        <input
+          value={passwordTwo}
+          onChange={event =>
+            this.setState(byPropKey("passwordTwo", event.target.value))
+          }
+          type="password"
+          placeholder="Confirm New Password"
         />
         <button disabled={isInvalid} type="submit">
           Reset My Password
@@ -69,12 +67,4 @@ class PasswordForgetForm extends React.Component {
   }
 }
 
-const PasswordForgetLink = () => (
-  <p>
-    <Link to={routes.PASSWORD_FORGET}>Forget Password?</Link>
-  </p>
-);
-
-export default PasswordForgetPage;
-
-export { PasswordForgetForm, PasswordForgetLink };
+export default PasswordForgetForm;

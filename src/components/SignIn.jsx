@@ -4,6 +4,8 @@ import { withRouter } from "react-router-dom";
 
 import { SignUpLink } from "./SignUp";
 
+import { PasswordForgetLink } from "./PasswordForget";
+
 import auth from "../firebase/index";
 
 import * as routes from "../constants/routes";
@@ -13,6 +15,7 @@ const SignInPage = ({ history }) => (
     <h1>SignIn</h1>
     <SignInForm history={history} />
     <SignUpLink />
+    <PasswordForgetLink />
   </div>
 );
 
@@ -70,7 +73,7 @@ class SignInForm extends React.Component {
           onChange={event =>
             this.setState(byPropKey("password", event.target.value))
           }
-          type="text"
+          type="password"
           placeholder="Password"
         />
 
