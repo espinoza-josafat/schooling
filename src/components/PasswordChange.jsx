@@ -1,6 +1,6 @@
 import React from "react";
 
-import auth from "../firebase/index";
+import { auth } from "../firebase/index";
 
 const byPropKey = (propertyName, value) => () => ({
   [propertyName]: value
@@ -22,7 +22,7 @@ class PasswordForgetForm extends React.Component {
   onSubmit = event => {
     const { passwordOne } = this.state;
 
-    auth.auth
+    auth
       .doPasswordUpdate(passwordOne)
       .then(() => {
         this.setState({ ...INITIAL_STATE });

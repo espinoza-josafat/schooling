@@ -2,7 +2,7 @@ import React from "react";
 
 import { Link } from "react-router-dom";
 
-import auth from "../firebase/index";
+import { auth } from "../firebase/index";
 
 import * as routes from "../constants/routes";
 
@@ -32,7 +32,7 @@ class PasswordForgetForm extends React.Component {
   onSubmit = event => {
     const { email } = this.state;
 
-    auth.auth
+    auth
       .doPasswordReset(email)
       .then(() => {
         this.setState({ ...INITIAL_STATE });

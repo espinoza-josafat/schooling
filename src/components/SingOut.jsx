@@ -1,9 +1,9 @@
 import React from "react";
 
-import auth from "../firebase/index";
+import { auth } from "../firebase/index";
 
 const SignOutButton = () => (
-  <button type="button" onClick={auth.auth.doSignOut}>
+  <button type="button" onClick={auth.doSignOut}>
     Sign Out
   </button>
 );

@@ -6,7 +6,7 @@ import { SignUpLink } from "./SignUp";
 
 import { PasswordForgetLink } from "./PasswordForget";
 
-import auth from "../firebase/index";
+import { auth } from "../firebase/index";
 
 import * as routes from "../constants/routes";
 
@@ -40,7 +40,7 @@ class SignInForm extends React.Component {
 
     const { history } = this.props;
 
-    auth.auth
+    auth
       .doSignInWithEmailAndPassword(email, password)
       .then(() => {
         this.setState({ ...INITIAL_STATE });
