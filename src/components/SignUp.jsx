@@ -39,15 +39,15 @@ class SignUpForm extends React.Component {
     auth
       .doCreateUserWithEmailAndPassword(email, passwordOne)
       .then(authUser => {
-        //users
-        // .doCreateUser(authUser.user.uid, username, email)
-        // .then(() => {
+        users
+         .doCreateUser(authUser.user.uid, username, email)
+         .then(() => {
         this.setState({ ...INITIAL_STATE });
         history.push(routes.HOME);
-        // })
-        // .catch(error => {
-        //    this.setState(byPropKey("error", error));
-        // });
+         })
+         .catch(error => {
+            this.setState(byPropKey("error", error));
+         });
       })
       .catch(error => {
         this.setState(byPropKey("error", error));
