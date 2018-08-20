@@ -7,10 +7,15 @@ import * as routes from "../constants/routes";
 import { auth } from "../firebase/index";
 import * as users from "../bussiness/users";
 
+import firebase from "firebase";
+
+import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
+
 const SignUpPage = ({ history }) => (
   <div>
     <h1>SignUp</h1>
     <SignUpForm history={history} />
+    <StyledFirebaseAuthForm history={history} />
   </div>
 );
 
@@ -40,14 +45,14 @@ class SignUpForm extends React.Component {
       .doCreateUserWithEmailAndPassword(email, passwordOne)
       .then(authUser => {
         users
-         .doCreateUser(authUser.user.uid, username, email)
-         .then(() => {
-        this.setState({ ...INITIAL_STATE });
-        history.push(routes.HOME);
-         })
-         .catch(error => {
+          .doCreateUser(authUser.user.uid, username, email)
+          .then(() => {
+            this.setState({ ...INITIAL_STATE });
+            history.push(routes.HOME);
+          })
+          .catch(error => {
             this.setState(byPropKey("error", error));
-         });
+          });
       })
       .catch(error => {
         this.setState(byPropKey("error", error));
@@ -114,6 +119,50 @@ const SignUpLink = () => (
     Don't have an account? <Link to={routes.SIGN_UP}>Sign Up</Link>
   </p>
 );
+
+class StyledFirebaseAuthForm extends React.Component {
+  uiConfig = {
+    signInFlow: "popup",
+    signInOptions: [
+      firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+      firebase.auth.FacebookAuthProvider.PROVIDER_ID
+    ],
+    callbacks: {
+      signInSuccessWithAuthResult: (authResult, redirectUrl) => {
+        console.log("authResult", authResult);
+
+        users
+          .doCreateUser(
+            authResult.user.uid,
+            authResult.user.displayName,
+            authResult.user.email
+          )
+          .then(() => {
+            this.onSubmit();
+          })
+          .catch(error => {
+            this.setState(byPropKey("error", error));
+          });
+
+        return false;
+      }
+    }
+  };
+
+  onSubmit = () => {
+    const { history } = this.props;
+    history.push(routes.HOME);
+  };
+
+  render() {
+    return (
+      <StyledFirebaseAuth
+        uiConfig={this.uiConfig}
+        firebaseAuth={firebase.auth()}
+      />
+    );
+  }
+}
 
 export default withRouter(SignUpPage);
 
