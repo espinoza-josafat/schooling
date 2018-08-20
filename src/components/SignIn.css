@@ -27,9 +27,13 @@ form.col.s12 {
 
 .parallax-container {
   background-image: url("img/abc-alphabet-blackboard.jpg");
+  background-attachment: fixed;
   background-position: center; /* Center the image */
   background-repeat: no-repeat; /* Do not repeat the image */
   background-size: cover; /* Resize the background image to cover the entire container */
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
   height: 100% !important;
 }
 
