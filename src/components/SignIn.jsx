@@ -72,7 +72,6 @@ class SignInForm extends React.Component {
                   className="circle responsive-img"
                 />
                 <div className="row login">
-                  <h4 className="adjust-block">Inicio de sesión</h4>
                   <form onSubmit={this.onSubmit} className="col s12">
                     <div className="row">
                       <div className="input-field col m12 s12 no-right-left-padding">
