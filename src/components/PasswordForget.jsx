@@ -69,11 +69,19 @@ class PasswordForgetForm extends React.Component {
   }
 }
 
-const PasswordForgetLink = () => (
-  <p>
-    <Link to={routes.PASSWORD_FORGET}>Forget Password?</Link>
-  </p>
-);
+class PasswordForgetLink extends React.Component {
+  render() {
+    const stylePasswordForgetLink = {
+      fontSize: "18px"
+    };
+
+    return (
+      <p className="text-center adjust-block" style={stylePasswordForgetLink}>
+        <Link to={routes.PASSWORD_FORGET}>¿Olvidaste tu contraseña?</Link>
+      </p>
+    );
+  }
+}
 
 export default PasswordForgetPage;
 

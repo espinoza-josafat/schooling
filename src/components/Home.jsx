@@ -4,6 +4,8 @@ import withAuthorization from "./withAuthorization";
 
 import * as users from "../bussiness/users";
 
+import { Button, Icon } from "react-materialize";
+
 class HomePage extends React.Component {
   constructor(props) {
     super(props);
@@ -27,6 +29,7 @@ class HomePage extends React.Component {
         <h1>Home Page</h1>
         <p>The Home Page is accesible by every signed in user</p>
         {!!users && <UserList users={users} />}
+        <DemoButton />
       </div>
     );
   }
@@ -38,6 +41,12 @@ const UserList = ({ users }) => (
     <p>(Saved on Sign Up in Firebase Database)</p>
     {Object.keys(users).map(key => <div key={key}>{users[key].username}</div>)}
   </div>
+);
+
+const DemoButton = () => (
+  <Button waves="light">
+    EDIT ME<Icon left>save</Icon>
+  </Button>
 );
 
 const authCondition = authUser => !!authUser;

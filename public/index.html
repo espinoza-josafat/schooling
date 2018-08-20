@@ -8,7 +8,12 @@
 	<!--
       manifest.json provides metadata used when your web app is added to the
       homescreen on Android. See https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/
-    -->
+  -->
+  <!-- Import Google Icon Font -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!-- Import materialize.css -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css" rel="stylesheet">
+
 	<link rel="manifest" href="%PUBLIC_URL%/manifest.json">
 	<link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
 	<!--
@@ -22,20 +27,15 @@
     -->
 	<title>Schooling</title>
 
-<!-- Custom fonts for this template -->
-<!-- Custom Fonts -->
-<link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet"
- type="text/css">
-<link href="vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet">
-
 </head>
 
 <body>
 	<noscript>
 		Debe habilitar JavaScript para ejecutar esta aplicación.
 	</noscript>
+
 	<div id="root"></div>
+
 	<!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
@@ -46,6 +46,10 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+
+	<!-- Import jQuery before materialize.js -->
+	<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
 </body>
 
 </html>

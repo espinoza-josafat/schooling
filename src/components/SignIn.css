@@ -1,0 +1,50 @@
+/* Menu - profile */
+.bg-card-user {
+  background: rgba(238, 77, 64, 0.5);
+  padding-top: 25px;
+  margin: 0 auto;
+  width: 450px;
+}
+
+i.iconis {
+  font-size: 1em !important;
+  margin-top: 8px;
+}
+
+.login {
+  border: 1px solid #fff;
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
+form.col.s12 {
+  padding-bottom: 20px;
+}
+
+.row.login {
+  margin-bottom: 0;
+  margin-top: 25px;
+}
+
+.parallax-container {
+  background-image: url("img/abc-alphabet-blackboard.jpg");
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover; /* Resize the background image to cover the entire container */
+  height: 100% !important;
+}
+
+@media (max-width: 320px) {
+  /* smartphones, portrait iPhone, portrait 480x320 phones (Android) */
+
+  .bg-card-user {
+    width: 300px;
+  }
+}
+
+@media (min-width: 321px) and (max-width: 450px) {
+  /* smartphones, portrait iPhone, portrait 480x320 phones (Android) */
+
+  .bg-card-user {
+    width: 320px;
+  }
+}

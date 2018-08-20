@@ -114,11 +114,20 @@ class SignUpForm extends React.Component {
   }
 }
 
-const SignUpLink = () => (
-  <p>
-    Don't have an account? <Link to={routes.SIGN_UP}>Sign Up</Link>
-  </p>
-);
+class SignUpLink extends React.Component {
+  render() {
+    const styleSignUpLink = {
+      fontSize: "18px",
+      marginBottom: "0"
+    };
+
+    return (
+      <p className="text-center adjust-block" style={styleSignUpLink}>
+        ¿No tienes una cuenta? <Link to={routes.SIGN_UP}>Regístrate</Link>
+      </p>
+    );
+  }
+}
 
 class StyledFirebaseAuthForm extends React.Component {
   uiConfig = {

@@ -5,6 +5,9 @@ import { Link } from "react-router-dom";
 import AuthUserContext from "./AuthUserContext";
 import SignOutButton from "./SingOut";
 import * as routes from "../constants/routes";
+
+import { Icon, Navbar, NavItem } from "react-materialize";
+
 const Navigation = () => (
   <AuthUserContext.Consumer>
     {authUser => (authUser ? <NavigationAuth /> : <NavigationNonAuth />)}
@@ -12,31 +15,19 @@ const Navigation = () => (
 );
 
 const NavigationAuth = () => (
-  <ul>
-    <li>
-      <Link to={routes.LANDING}>Landing</Link>
-    </li>
-    <li>
-      <Link to={routes.HOME}>Home</Link>
-    </li>
-    <li>
-      <Link to={routes.ACCOUNT}>Account</Link>
-    </li>
-    <li>
-      <SignOutButton />
-    </li>
-  </ul>
+  <Navbar brand="logo" left>
+    <NavItem href={routes.LANDING}>Landing</NavItem>
+    <NavItem href={routes.HOME}>Home</NavItem>
+    <NavItem href={routes.ACCOUNT}>Account</NavItem>
+    <SignOutButton />
+  </Navbar>
 );
 
 const NavigationNonAuth = () => (
-  <ul>
-    <li>
-      <Link to={routes.LANDING}>Landing</Link>
-    </li>
-    <li>
-      <Link to={routes.SIGN_IN}>Sign in</Link>
-    </li>
-  </ul>
+  <Navbar brand="logo" left>
+    <NavItem href={routes.LANDING}>Landing</NavItem>
+    <NavItem href={routes.SIGN_IN}>Sign in</NavItem>
+  </Navbar>
 );
 
 export default Navigation;
