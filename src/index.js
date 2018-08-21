@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import { createBrowserHistory } from "history";
 import { Router, Route, Switch } from "react-router-dom";
 
-import indexRoutes from "./routes/index.jsx";
+import indexRoutes from "routes/index.jsx";
 
 import "assets/scss/material-dashboard-pro-react.css?v=1.3.0";
 
@@ -19,14 +19,3 @@ ReactDOM.render(
   </Router>,
   document.getElementById("root")
 );
-
-/*import React from "react";
-import ReactDOM from "react-dom";
-
-import App from "./components/App";
-
-import "./styles.css";
-
-const rootElement = document.getElementById("root");
-ReactDOM.render(<App />, rootElement);
-*/
