@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-database.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-messaging.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-functions.js"></script>
+
+<script>
+    // Initialize Firebase
+    var config = {
+        apiKey: "AIzaSyAeETXZpcbqAQv14RPkSfJ2znGXKHVfdUg",
+        authDomain: "schooling-mex.firebaseapp.com",
+        databaseURL: "https://schooling-mex.firebaseio.com",
+        projectId: "schooling-mex",
+        storageBucket: "schooling-mex.appspot.com",
+        messagingSenderId: "115969086228"
+    };
+
+    firebase.initializeApp(config);
+</script>
+
+<title>demo firebase</title>
+</head>
+
+<body>
+    <script>
+        // Get a reference to the database service
+        var database = firebase.database();
+        
+        database.ref().child("levels").orderByChild("description").equalTo("Preescolar").once("value").then(snapshot => {
+            var datos = snapshot.val();
+
+            if(datos) {
+                var keys = Object.keys(datos);
+                var key = keys[keys.length - 1];
+                if(keys.length > 1) {
+                    database.ref('levels/' + key).remove();
+                }
+                else {
+                    // Write the new post's data simultaneously in the posts list and the user's post list.
+                    var updates = {};
+                    updates['/levels/' + key] = { description: "Preescolar", order: 1 };
+
+                    firebase.database().ref().update(updates);
+                }
+            }
+            else {
+                key = database.ref().child("levels").push().key;
+                database.ref('levels/' + key).set({
+                    description: "Preescolar"
+                });
+            }
+        });
+
+        database.ref().child("levels").orderByChild("description").equalTo("Primaria").once("value").then(snapshot => {
+            var datos = snapshot.val();
+
+            if(datos) {
+                var keys = Object.keys(datos);
+                var key = keys[keys.length - 1];
+                if(keys.length > 1) {
+                    database.ref('levels/' + key).remove();
+                }
+                else {
+                    // Write the new post's data simultaneously in the posts list and the user's post list.
+                    var updates = {};
+                    updates['/levels/' + key] = { description: "Primaria", order: 2 };
+
+                    firebase.database().ref().update(updates);
+                }
+            }
+            else {
+                key = database.ref().child("levels").push().key;
+                database.ref('levels/' + key).set({
+                    description: "Primaria"
+                });
+            }
+        });
+
+        database.ref().child("levels").orderByChild("description").equalTo("Secundaria").once("value").then(snapshot => {
+            var datos = snapshot.val();
+
+            if(datos) {
+                var keys = Object.keys(datos);
+                var key = keys[keys.length - 1];
+
+                if(keys.length > 1) {
+                    database.ref('levels/' + key).remove();
+                }
+                else {
+                    // Write the new post's data simultaneously in the posts list and the user's post list.
+                    var updates = {};
+                    updates['/levels/' + key] = { description: "Secundaria", order: 3 };
+
+                    firebase.database().ref().update(updates);
+                }
+            }
+            else {
+                key = database.ref().child("levels").push().key;
+                database.ref('levels/' + key).set({
+                    description: "Secundaria"
+                });
+            }
+        });
+
+        //Lee los datos una sola vez ordenada por el child "description"
+        database.ref("levels").orderByChild("description").once("value").then(snapshot => {
+            var datos = [];
+
+            if(snapshot) {
+                snapshot.forEach(function(child) {
+                    datos.push(child.val());
+                });
+            }
+        });
+
+        //Lee los datos una sola vez ordenada por el child "order"
+        database.ref("levels").orderByChild("order").once('value').then(function(snapshot) {
+            var datos = [];
+
+            if(snapshot) {
+                snapshot.forEach(function(child) {
+                    datos.push(child.val());
+                });
+            }
+        });
+
+        //Obtiene un elemento por su id=-LKYS9lHCqodkD3DSAUV
+        var preescolarRef = database.ref("levels/-LKYS9lHCqodkD3DSAUV");
+
+        //"Enciende" el "evento" "cambio" para el elemento anterior recuperado
+        preescolarRef.on('value', function(snapshot) {
+            console.log("cambio en:", snapshot.val());
+        });
+
+        database.ref().once('value').then(function(snapshot) {
+            console.log(JSON.stringify(snapshot.val()));
+        });
+
+    </script>
+</body>
+
+</html>
